@@ -19,12 +19,15 @@ Chartworks renders charts from a JSON spec. The agent flow has three stages — 
    npx chartworks guide bar line
    ```
 
-3. **Render** — write the chart to disk:
+3. **Render** — write the chart to disk. Pass the spec via file or stdin:
 
    ```bash
    npx chartworks render --spec spec.json --out chart.png
+
+   # or pipe inline without touching the filesystem:
+   echo '{"type":"bar", ...}' | npx chartworks render --out chart.png
    ```
 
-`spec.json` describes one chart or a composition of blocks. The shape comes from step 2 — don't guess.
+The spec describes one chart or a composition of blocks. The shape comes from step 2 — don't guess.
 
 For SVG output add `--format svg`. For all options: `npx chartworks --help`.
