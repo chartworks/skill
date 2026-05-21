@@ -1,6 +1,6 @@
 ---
 name: chartworks
-description: Use when the user asks for a chart, graph, or visualization. Renders charts (bar, line, pie, mekko, callouts, tables, compositions) as PNG or SVG via the Chartworks CLI.
+description: Use when the user asks for a chart, graph, or visualization. Renders bar, line, area, mekko, pie, timeline, table, and other charts as PNG or SVG via the Chartworks CLI.
 ---
 
 # Using Chartworks
@@ -29,5 +29,7 @@ Chartworks renders charts from a JSON spec. The agent flow has three stages — 
    ```
 
 The spec describes one chart or a composition of blocks. The shape comes from step 2 — don't guess.
+
+To browse theme presets: `npx chartworks presets`.
 
 For SVG output add `--format svg`. For all options: `npx chartworks --help`.
