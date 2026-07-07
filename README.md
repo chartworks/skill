@@ -22,7 +22,7 @@ Once installed, the agent will reach for these commands when asked to render a c
 
 ```bash
 npx chartworks manual                       # orientation, once per session
-npx chartworks guide bar line               # per-chart docs (variadic)
+npx chartworks guide column combo           # per-chart docs (variadic)
 npx chartworks render --spec spec.json      # render to PNG / SVG
 ```
 
