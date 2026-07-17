@@ -28,6 +28,12 @@ Chartworks renders charts from a JSON spec. The agent flow has three stages — 
    echo '{"type":"bar", ...}' | npx chartworks render --out chart.png
    ```
 
+   Optional — validate a spec first (no render, no quota) to catch shape errors before rendering:
+
+   ```bash
+   npx chartworks validate --spec spec.json
+   ```
+
 The spec describes one chart or a composition of blocks. The shape comes from step 2 — don't guess. For small multiples, fetch the relevant chart guide and use that chart's `facet` channel when the guide/schema supports it. Usually omit `facet.columns`; Chartworks picks an aspect-aware grid by default.
 
 To browse themes: `npx chartworks themes`.
