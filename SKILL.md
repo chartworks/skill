@@ -42,4 +42,6 @@ To browse themes: `npx chartworks themes`.
 
 To list workspace assets (logos and images you've uploaded): `npx chartworks assets list`. Reference one in a spec as `asset:<name>` — the name must match exactly, so list first rather than guessing.
 
+To upload one: `npx chartworks assets put ./acme-logo.png` (PNG, JPEG, or WebP; the name defaults to the filename). Uploading over an existing name needs `--force`. This needs a key with `asset:write`, which `npx chartworks auth login` requests by default. Delete with `npx chartworks assets rm <name>`.
+
 For SVG output add `--format svg`. For all options: `npx chartworks --help`.
