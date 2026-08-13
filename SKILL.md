@@ -36,7 +36,20 @@ Chartworks renders charts from a JSON spec. The agent flow has three stages — 
 
 The spec describes one chart or a composition of blocks. The shape comes from step 2 — don't guess. For small multiples, fetch the relevant chart guide and use that chart's `facet` channel when the guide/schema supports it. Usually omit `facet.columns`; Chartworks picks an aspect-aware grid by default.
 
-For exact output dimensions (report pipelines, fixed slots), set `dimensions: { "width": 1600, "height": 900 }` in the spec — authoritative for SVG and the PNG logical canvas, tables included. `aspect` plus one of `width`/`height` derives the other; never send all three. PNG pixels = canvas × `--scale` (default 2, range 1-4): 1600x900 at `--scale 1` is exactly 1600x900, at `--scale 2` exactly 3200x1800. Scale changes resolution only, never layout; SVG ignores it. Oversized requests fail with the failing limit named (canvas ≤ 4096px/side; PNG output ≤ 8192px/side and ≤ 8,000,000px² area).
+For exact output dimensions (fixed slots), set `dimensions: { "width": 960, "height": 540 }` in the spec — authoritative for SVG and the PNG logical canvas, tables included. `aspect` plus one of `width`/`height` derives the other; never send all three. PNG pixels = canvas × `--scale` (default 2, range 1-4): 960x540 at `--scale 1` is exactly 960x540, at `--scale 2` exactly 1920x1080. Scale changes resolution only, never layout; SVG ignores it. Oversized requests fail with the failing limit named (canvas ≤ 4096px/side; PNG output ≤ 8192px/side and ≤ 8,000,000px² area).
+
+**Sizing a chart that gets placed in a document or slide.** Text inside the chart is sized from the canvas, so the canvas decides how large the type reads once the image is placed at a physical width. Compute it rather than guessing:
+
+```
+displayed label size (pt) = (label_px ÷ canvas_width_px) × 72 × placed_width_inches
+```
+
+Axis labels are about 0.025 × canvas width at 400x225, falling to about 0.014 at 960x540 and above — the type scale clamps, so a bigger canvas makes type _smaller_ relative to the figure. Two anchors:
+
+- **Report figure, ~6in text column, 11pt body text** — use `{ "width": 400, "height": 225 }` with `--scale 4`. Labels land near 10.8pt, output is 1600x900px at ~267 DPI. The same figure from a 1600x900 canvas gives roughly 6pt labels and 4pt footnotes, which is unreadable next to body text.
+- **Slide, 10-13in content box** — use `{ "width": 600, "height": 400 }` or larger. Labels land 12-16pt against typical 18-24pt slide text.
+
+Raise `--scale` for print density; it never changes layout or type size. Use one canvas size across every figure in a set so type stays consistent between them.
 
 To browse themes: `npx chartworks themes`.
 
