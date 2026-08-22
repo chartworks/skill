@@ -44,7 +44,7 @@ For exact output dimensions (fixed slots), set `dimensions: { "width": 960, "hei
 displayed label size (pt) = (label_px ÷ canvas_width_px) × 72 × placed_width_inches
 ```
 
-If the result does not match the host text, set `dimensions.typeScale` from 0.6 through 2 and render again. The multiplier applies after the canvas-derived size clamp. It scales text and the outer inset; canvas size, output pixels, and placement stay unchanged. Read the new `labelPx` and `inset` from the result. For PNG pixel cropping, multiply the logical inset by `--scale`.
+If the result does not match the host text, set `dimensions.typeScale` from 0.6 through 2 and render again. The multiplier applies after the canvas-derived size clamp. It scales chart text and the outer inset; canvas size, output pixels, and placement stay unchanged. Titles, subtitles, block titles, footnotes, and attribution stop scaling above 1.25; chart content continues to 2. Read the new `labelPx` and `inset` from the result. For PNG pixel cropping, multiply the logical inset by `--scale`.
 
 Axis labels are about 0.025 × canvas width at 400x225, falling to about 0.014 at 960x540 and above — the base type size clamps, so a bigger canvas makes type _smaller_ relative to the figure. Two anchors:
 
