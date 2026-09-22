@@ -59,4 +59,6 @@ To list workspace assets (logos and images you've uploaded): `npx chartworks ass
 
 To upload one: `npx chartworks assets put ./acme-logo.png --name acme/logos/primary` (PNG, JPEG, or WebP; without `--name`, the handle defaults to the filename). Uploading over an existing complete handle needs `--force`. This needs a key with `asset:write`, which `npx chartworks auth login` requests by default. Delete with `npx chartworks assets rm <handle>`.
 
+Uploads are stored as still PNGs with image metadata removed. The 5 MB limit applies to both the uploaded file and the processed image; animation is reduced to its first frame.
+
 For SVG output add `--format svg`. For all options: `npx chartworks --help`.
